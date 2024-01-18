@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Complaint = require('../models/complaints');
+const User = require('../models/user')
 const fetchuser = require('../middleware/fetchuser')
 const { body, validationResult } = require('express-validator');
 
@@ -25,40 +26,31 @@ router.post('/registerfir', fetchuser, [
 
   try {
     const userId = req.user.id;
-    const { FIRNO, FIR_DESC, name, phone } = req.body
+    const { FIRNO, FIR_DESC, name, phone } = req.body;
 
     try {
-      let success = false;
+      const response = await User.findOne({ _id: userId });
+  const policeStation = response.policeStationName;
+  // console.log(policeStation);
 
-      // client.verify.v2.services('AC48603e88d473d4980b7f360a1cbe1b53')
-      //   .verifications
-      //   .create({ to: phone, channel: 'sms' })
-      //   .then(verification => {
-      //     console.log(verification.status)
+  const complaint = await Complaint.create({ registeredBy: userId, FIRNO, FIR_DESC, name, phone });
+  await complaint.save();
 
-          client.messages
-            .create({
-              body: `Your FIR has been successfully registered \n And the Details for it are as follows: \n FIRNO: ${FIRNO} \n FIR Description: ${FIR_DESC} \n To get the live updates and to give us valuable Feedback`,
-              from: '+19293234779',
-              to: '+91' + phone
-            })
-            .then(message => {
-              // console.log(message.sid)
-              success = true;
-              res.json({ success, msg: "Registeration msg has been sent" })
-    
-            });
+  client.messages.create({
+    body: `Your FIR has been successfully registered \n And the Details for it are as follows: \n FIRNO: ${FIRNO} \n FIR Description: ${FIR_DESC} \n To get the live updates and to give us valuable Feedback use following website https://raj-police-user-frontend.vercel.app/system/rate/${policeStation}`,
+    from: '+19293234779',
+    to: '+91' + phone
+  })
+  .then(message => {
+    // console.log(message.sid);
+    res.json({ success: true, msg: "Registration msg has been sent" });
+  })
         // });
 
     } catch (error) {
       return res.status(500).json({ error: "Error occurred while sending registerion message" })
     }
 
-
-
-    const complaint = await Complaint.create({ registeredBy: userId, FIRNO, FIR_DESC, name, phone });
-    await complaint.save();
-    res.json(complaint);
   } catch (err) {
     res.status(500).send("Internal Server Error || Insertion")
   }
