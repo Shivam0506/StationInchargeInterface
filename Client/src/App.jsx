@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './App.css'
 import { Signin, Home, Alert } from './modules/index'
 import {
@@ -10,9 +10,17 @@ import {
 
 import UserState from './context/UserState';
 import ComplaintState from './context/ComplaintState';
+import UserContext from '../context/UserContext';
+
 
 function App() {
-  
+  const context = useContext(UserContext);
+  const { user, getUser } = context;
+
+    useEffect(() => {
+        getUser()
+    }, [])
+
 
   const [alert, setAlert] = useState(null);
 

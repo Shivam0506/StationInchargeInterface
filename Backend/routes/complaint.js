@@ -37,7 +37,7 @@ router.post('/registerfir', fetchuser, [
   await complaint.save();
 
   client.messages.create({
-    body: `Your FIR has been successfully registered \n And the Details for it are as follows: \n FIRNO: ${FIRNO} \n FIR Description: ${FIR_DESC} \n To get the live updates and to give us valuable Feedback use following website https://raj-police-user-frontend.vercel.app/system/rate/${policeStation}`,
+    body: `Your FIR has been successfully registered \n And the Details for it are as follows: \n FIRNO: ${FIRNO} \n FIR Description: ${FIR_DESC} \n To get the live updates and to give us valuable Feedback use following website https://raj-police-user-frontend.vercel.app/`,
     from: '+19293234779',
     to: '+91' + phone
   })
