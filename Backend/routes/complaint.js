@@ -30,8 +30,8 @@ router.post('/registerfir', fetchuser, [
 
     try {
       const response = await User.findOne({ _id: userId });
-  const policeStation = response.policeStationName;
-  // console.log(policeStation);
+  const policeStation = response.policeStationName.replace(/\s+/g, '%20');
+  console.log(policeStation);
 
   const complaint = await Complaint.create({ registeredBy: userId, FIRNO, FIR_DESC, name, phone });
   await complaint.save();
