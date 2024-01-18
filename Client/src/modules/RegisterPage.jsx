@@ -18,7 +18,7 @@ export const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     // Api Call
-    const response = await fetch('http://localhost:5001/api/complaint/registerfir', {
+    const response = await fetch('https://rajpolicestationinchargeapi.onrender.com/api/complaint/registerfir', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

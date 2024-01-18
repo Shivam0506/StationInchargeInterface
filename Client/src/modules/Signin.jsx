@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import BrandLogo from '..../public/assets/Rajasthan_Police_Logo.png'
-import LeftSideLogo from '..../public/assets/logoRajPolice1.png'
-import star from '..../public/assets/star.svg'
+import BrandLogo from '../../public/assets/Rajasthan_Police_Logo.png'
+import LeftSideLogo from '../../public/assets/logoRajPolice1.png'
+import star from '../../public/assets/star.svg'
 import { Link, useNavigate } from "react-router-dom";
 
 
@@ -26,7 +26,7 @@ export const Signin = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        const response = await fetch('http://localhost:5001/api/auth/login', {
+        const response = await fetch('https://rajpolicestationinchargeapi.onrender.com/api/auth/login', {
             method: "POST",  
             headers: {
               "Content-Type": "application/json",

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
-import BrandLogo from '..../public/assets/Rajasthan_Police_Logo.png'
-import Admin from '..../public/assets/Admin.png'
-import NotificationIcon from '..../public/assets/Notification.svg'
+import BrandLogo from '../../public/assets/Rajasthan_Police_Logo.png'
+import Admin from '../../public/assets/Admin.png'
+import NotificationIcon from '../../public/assets/Notification.svg'
 import UserContext from '../context/UserContext'
 
 export const TopNavigation = () => {

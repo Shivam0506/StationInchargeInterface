@@ -9,7 +9,7 @@ const ComplaintState = (props) => {
     // Fetch all notes
     const getComplaints = async()=>{
         // API call
-        const response = await fetch('http://localhost:5001/api/complaint/fetchallcomplaints', {
+        const response = await fetch('https://rajpolicestationinchargeapi.onrender.com/api/complaint/fetchallcomplaints', {
             method: "GET",  
             headers: {
               "Content-Type": "application/json",
@@ -23,7 +23,7 @@ const ComplaintState = (props) => {
 
     // Get complaint by id
     const getComplaintbyId = async (id)=>{
-        const response = await fetch(`http://localhost:5001/api/complaint/status/${id}`,{
+        const response = await fetch(`https://rajpolicestationinchargeapi.onrender.com/api/complaint/status/${id}`,{
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const ComplaintState = (props) => {
 
     // Post updateComplaintStatus
     const updateComplaintStatus = async (id, updateDescription, updateTag)=>{
-        const response = await fetch(`http://localhost:5001/api/complaint/status/${id}/updates`,{
+        const response = await fetch(`https://rajpolicestationinchargeapi.onrender.com/api/complaint/status/${id}/updates`,{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

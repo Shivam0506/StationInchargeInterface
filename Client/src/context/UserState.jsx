@@ -7,7 +7,7 @@ const UserState = (props) => {
 
     const getUser = async () => {
         // API call
-        const response = await fetch('http://localhost:5001/api/auth/getuser', {
+        const response = await fetch('https://rajpolicestationinchargeapi.onrender.com/api/auth/getuser', {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
